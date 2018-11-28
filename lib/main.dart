@@ -32,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage>
     // TODO: implement initState
     super.initState();
 
-    animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 1500));
     //animation = Tween<double>(begin: 20.0, end: 100.0).animate(animationController);
 
     animation = ColorTween(begin: Colors.white, end: Colors.black87).animate(animationController);
@@ -57,4 +57,15 @@ class _MyHomePageState extends State<MyHomePage>
 
         ));
   }
+}
+
+class AnimatedLogo extends AnimatedWidget{
+
+  
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return null;
+  }
+
 }
