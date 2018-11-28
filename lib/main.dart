@@ -23,17 +23,27 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
-  
+
   Animation<double> animation;
   AnimationController animationController;
+
+
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
+    animation.addListener((){
+      setState(() {
+
+      });
+    });
+
+    animation.addStatusListener((status)=> print(status));
+    animationController.forward();
   }
 
   @override
