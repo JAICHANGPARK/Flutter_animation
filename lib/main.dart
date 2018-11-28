@@ -32,15 +32,17 @@ class _MyHomePageState extends State<MyHomePage>
     // TODO: implement initState
     super.initState();
 
-    animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 1500));
+    animationController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 1500));
     //animation = Tween<double>(begin: 20.0, end: 100.0).animate(animationController);
 
-    animation = ColorTween(begin: Colors.white, end: Colors.black87).animate(animationController);
-    animation.addListener(() {
-      setState(() {
-        print(animation.value.toString());
-      });
-    });
+    animation = ColorTween(begin: Colors.white, end: Colors.black87)
+        .animate(animationController);
+//    animation.addListener(() {
+//      setState(() {
+//        print(animation.value.toString());
+//      });
+//    });
 
     animation.addStatusListener((status) => print(status));
     animationController.forward();
@@ -49,23 +51,28 @@ class _MyHomePageState extends State<MyHomePage>
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Container(
-          height: 150.0,
-          width: 150.0,
-          color: animation.value,
-          child: FlutterLogo(),
-
-        ));
+      child: AnimatedLogo(
+        animation: animation,
+      ),
+//        child: Container(
+//          height: 150.0,
+//          width: 150.0,
+//          color: animation.value,
+//          child: FlutterLogo(),
+//
+//        )
+//
+        );
   }
 }
 
-class AnimatedLogo extends AnimatedWidget{
+class AnimatedLogo extends AnimatedWidget {
+  AnimatedLogo({Key key, Animation animation})
+      : super(key: key, listenable: animation);
 
-  
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return null;
   }
-
 }
