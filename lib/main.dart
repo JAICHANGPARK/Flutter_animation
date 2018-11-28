@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage>
     //animation = Tween<double>(begin: 20.0, end: 100.0).animate(animationController);
 
     animation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
+        CurvedAnimation(parent: animationController, curve: Curves.bounceOut);
 
     animation.addListener(() {
       setState(() {
@@ -49,11 +49,10 @@ class _MyHomePageState extends State<MyHomePage>
     animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         animationController.reverse();
-      } else if(status == AnimationStatus.dismissed){
+      } else if (status == AnimationStatus.dismissed) {
         animationController.forward();
       }
-
-      });
+    });
     animationController.forward();
   }
 
@@ -78,6 +77,8 @@ class _MyHomePageState extends State<MyHomePage>
 class AnimatedLogo extends AnimatedWidget {
   final Tween<double> _sizeAnim = Tween<double>(begin: 0.0, end: 500.0);
 
+//  final CurvedAnimation _sizeAnim = CurvedAnimation(begin: 0.0, end: 500.0);
+
   AnimatedLogo({Key key, Animation animation})
       : super(key: key, listenable: animation);
 
@@ -86,7 +87,7 @@ class AnimatedLogo extends AnimatedWidget {
     // TODO: implement build
     final Animation<double> animation = listenable;
     return Transform.scale(
-      scale: _sizeAnim.evaluate(animation),
+      scale: animation.value,
       child: FlutterLogo(),
     );
   }
