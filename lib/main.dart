@@ -24,6 +24,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   Animation<double> animation;
+
 //  Animation<Color> animation;
   AnimationController animationController;
 
@@ -33,10 +34,11 @@ class _MyHomePageState extends State<MyHomePage>
     super.initState();
 
     animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1500));
+        vsync: this, duration: Duration(milliseconds: 5000));
     //animation = Tween<double>(begin: 20.0, end: 100.0).animate(animationController);
 
-    animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
+    animation =
+        Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
 
     animation.addListener(() {
       setState(() {
@@ -67,8 +69,7 @@ class _MyHomePageState extends State<MyHomePage>
 }
 
 class AnimatedLogo extends AnimatedWidget {
-
-  final Tween<double> _sizeAnim = Tween<double>(begin: 20, end: 500.0);
+  final Tween<double> _sizeAnim = Tween<double>(begin: 0.0, end: 500.0);
 
   AnimatedLogo({Key key, Animation animation})
       : super(key: key, listenable: animation);
@@ -76,18 +77,10 @@ class AnimatedLogo extends AnimatedWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    final Animation<double>animation = listenable;
-    return Opacity(
-      opacity: animation.value,
-      child: Transform.s(
-        angle: _sizeAnim.evaluate(animation),
-
-        child: Container(
-          height: 100.0,
-          width: 100.0,
-          child: FlutterLogo(),
-        ),
-      ),
+    final Animation<double> animation = listenable;
+    return Transform.scale(
+      scale: _sizeAnim.evaluate(animation),
+      child: FlutterLogo(),
     );
   }
 }
