@@ -23,8 +23,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
-//  Animation<double> animation;
-  Animation<Color> animation;
+  Animation<double> animation;
+//  Animation<Color> animation;
   AnimationController animationController;
 
   @override
@@ -36,13 +36,13 @@ class _MyHomePageState extends State<MyHomePage>
         vsync: this, duration: Duration(milliseconds: 1500));
     //animation = Tween<double>(begin: 20.0, end: 100.0).animate(animationController);
 
-    animation = ColorTween(begin: Colors.white, end: Colors.black87)
-        .animate(animationController);
-//    animation.addListener(() {
-//      setState(() {
-//        print(animation.value.toString());
-//      });
-//    });
+    animation = Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
+
+    animation.addListener(() {
+      setState(() {
+        print(animation.value.toString());
+      });
+    });
 
     animation.addStatusListener((status) => print(status));
     animationController.forward();
@@ -67,18 +67,23 @@ class _MyHomePageState extends State<MyHomePage>
 }
 
 class AnimatedLogo extends AnimatedWidget {
+
+  final Tween<double> _sizeAnim = Tween<double>(begin: 50.0, end: 100.0);
+
   AnimatedLogo({Key key, Animation animation})
       : super(key: key, listenable: animation);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    final Animation<Color>animation = listenable;
-    return Container(
-      height: 100.0,
-      width: 100.0,
-      color: animation.value,
-      child: FlutterLogo(),
+    final Animation<double>animation = listenable;
+    return Opacity(
+      opacity: animation.value,
+      child: Container(
+        height: _sizeAnim.evaluate(animation),
+        width: 100.0,
+        child: FlutterLogo(),
+      ),
     );
   }
 }
