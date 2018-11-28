@@ -46,7 +46,14 @@ class _MyHomePageState extends State<MyHomePage>
       });
     });
 
-    animation.addStatusListener((status) => print(status));
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        animationController.reverse();
+      } else if(status == AnimationStatus.dismissed){
+        animationController.forward();
+      }
+
+      });
     animationController.forward();
   }
 
