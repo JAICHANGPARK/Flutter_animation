@@ -87,7 +87,7 @@ class AnimatedLogo extends AnimatedWidget {
     // TODO: implement build
     final Animation<double> animation = listenable;
     return Transform.scale(
-      scale: animation.value,
+      scale: animation.value * 50,
       child: FlutterLogo(),
     );
   }
