@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage>
     animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
     animation =
-        Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
+        Tween<double>(begin: 20.0, end: 100.0).animate(animationController);
     animation.addListener(() {
       setState(() {
         print(animation.value.toString());
@@ -49,6 +49,9 @@ class _MyHomePageState extends State<MyHomePage>
   Widget build(BuildContext context) {
     return Center(
         child: Container(
+          height: animation.value,
+          width: animation.value,
+          child: FlutterLogo(),
 
         ));
   }
