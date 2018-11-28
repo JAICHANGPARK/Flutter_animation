@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage>
 //
 //        )
 //
-        );
+    );
   }
 }
 
@@ -73,6 +73,12 @@ class AnimatedLogo extends AnimatedWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return null;
+    final Animation<Color>animation = listenable;
+    return Container(
+      height: 100.0,
+      width: 100.0,
+      color: animation.value,
+      child: FlutterLogo(),
+    );
   }
 }
