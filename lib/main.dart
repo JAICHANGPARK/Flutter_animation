@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage>
 
 class AnimatedLogo extends AnimatedWidget {
 
-  final Tween<double> _sizeAnim = Tween<double>(begin: 50.0, end: 100.0);
+  final Tween<double> _sizeAnim = Tween<double>(begin: 20, end: 500.0);
 
   AnimatedLogo({Key key, Animation animation})
       : super(key: key, listenable: animation);
@@ -79,10 +79,14 @@ class AnimatedLogo extends AnimatedWidget {
     final Animation<double>animation = listenable;
     return Opacity(
       opacity: animation.value,
-      child: Container(
-        height: _sizeAnim.evaluate(animation),
-        width: 100.0,
-        child: FlutterLogo(),
+      child: Transform.s(
+        angle: _sizeAnim.evaluate(animation),
+
+        child: Container(
+          height: 100.0,
+          width: 100.0,
+          child: FlutterLogo(),
+        ),
       ),
     );
   }
