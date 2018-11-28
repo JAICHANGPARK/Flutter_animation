@@ -72,6 +72,13 @@ class _MyHomePageState extends State<MyHomePage>
 //
     );
   }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    animationController.dispose();
+    super.dispose();
+  }
 }
 
 class AnimatedLogo extends AnimatedWidget {
@@ -92,3 +99,4 @@ class AnimatedLogo extends AnimatedWidget {
     );
   }
 }
+
